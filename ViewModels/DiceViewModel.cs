@@ -64,19 +64,19 @@ namespace DiceChallengeMVVM.ViewModels
 
             if (BetAmount <= 0)
             {
-                ErrorMessage = "Please enter an amount greater than zero";
+                ErrorMessage = "Please enter an amount greater than zero.";
                 return;
             }
 
             if (BitConverter.GetBytes(decimal.GetBits(BetAmount)[3])[2] > 2)
             {
-                ErrorMessage = "You cannot bet with a fraction of a penny";
+                ErrorMessage = "You cannot bet with a fraction of a penny.";
                 return;
             }
 
             if (BetAmount > Bank)
             {
-                ErrorMessage = "You do not have enough money";
+                ErrorMessage = "You do not have enough money.";
                 return;
             }
 
