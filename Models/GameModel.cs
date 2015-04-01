@@ -71,7 +71,7 @@ namespace DiceChallengeMVVM.Models
                     Multiplier = 5,
                     RuleFunc = models =>
                     {
-                        var runLength = 0;
+                        var runLength = 1;
                         var values = models.Select(x => x.Value).Distinct().OrderBy(x => x).ToList();
                         if (values.Count <= 3)
                         {
