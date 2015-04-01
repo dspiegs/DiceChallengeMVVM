@@ -100,6 +100,7 @@ namespace DiceChallengeMVVM.ViewModels
         public void Reset()
         {
             ErrorMessage = string.Empty;
+            RolledDice.Clear();
             BetAmount = 0;
             gm.Reset();
             OnPropertyChanged("Bank");

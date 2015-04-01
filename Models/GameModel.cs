@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Documents;
+using System.Windows.Media.Imaging;
+using DiceChallengeMVVM.Properties;
 
 namespace DiceChallengeMVVM.Models
 {
@@ -13,32 +16,32 @@ namespace DiceChallengeMVVM.Models
             {
                 new DiceModel
                 {
-                    Image = null,
+                    BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Resources/Dice1.gif")),
                     Value = 1
                 },
                 new DiceModel
                 {
-                    Image = null,
+                    BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Resources/Dice2.gif")),
                     Value = 2
                 },
                 new DiceModel
                 {
-                    Image = null,
+                    BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Resources/Dice3.gif")),
                     Value = 3
                 },
                 new DiceModel
                 {
-                    Image = null,
+                    BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Resources/Dice4.gif")),
                     Value = 4
                 },
                 new DiceModel
                 {
-                    Image = null,
+                    BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Resources/Dice5.gif")),
                     Value = 5
                 },
                 new DiceModel
                 {
-                    Image = null,
+                    BitmapImage = new BitmapImage(new Uri("pack://application:,,,/Resources/Dice6.gif")),
                     Value = 6
                 }
             };
