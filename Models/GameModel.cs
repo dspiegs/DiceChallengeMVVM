@@ -73,6 +73,11 @@ namespace DiceChallengeMVVM.Models
                     {
                         var runLength = 0;
                         var values = models.Select(x => x.Value).Distinct().OrderBy(x => x).ToList();
+                        if (values.Count <= 3)
+                        {
+                            return false;
+                        }
+
                         foreach (var value in values)
                         {
                             if (values.Any(x => x == value + 1))

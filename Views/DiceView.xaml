@@ -7,7 +7,7 @@
         <viewModels:DiceViewModel/>
     </Window.DataContext>
     <StackPanel>
-        <ListBox ItemsSource="{Binding RolledDice}"
+        <ListBox ItemsSource="{Binding RolledDice}" IsEnabled="False"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
