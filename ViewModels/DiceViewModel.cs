@@ -5,7 +5,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Documents;
+using System.Windows.Input;
 using DiceChallengeMVVM.Annotations;
+using DiceChallengeMVVM.Commands;
 using DiceChallengeMVVM.Models;
 
 namespace DiceChallengeMVVM.ViewModels
@@ -19,6 +21,9 @@ namespace DiceChallengeMVVM.ViewModels
 
         public ObservableCollection<RuleModel> Rules { get; set; } 
         public ObservableCollection<DiceModel> RolledDice { get; private set; }
+
+        public DelegateCommand NewGameCommand { get; private set; }
+        public DelegateCommand RollDiceCommand { get; private set; }
 
         public decimal BetAmount
         {
@@ -48,6 +53,9 @@ namespace DiceChallengeMVVM.ViewModels
             random = new Random();
             RolledDice = new ObservableCollection<DiceModel>();
             Rules = new ObservableCollection<RuleModel>(gm.Rules);
+
+            RollDiceCommand = new DelegateCommand(RollDice, () => Bank > 0);
+            NewGameCommand = new DelegateCommand(Reset);
         }
 
         public void RollDice()
@@ -84,7 +92,8 @@ namespace DiceChallengeMVVM.ViewModels
 
             if (Bank == 0)
             {
-                ErrorMessage = "Game Over";
+                ErrorMessage = "Game Over";                
+                RollDiceCommand.RefeshCanExecute();
             }
         }
 
@@ -94,6 +103,7 @@ namespace DiceChallengeMVVM.ViewModels
             BetAmount = 0;
             gm.Reset();
             OnPropertyChanged("Bank");
+            RollDiceCommand.RefeshCanExecute();
         }
 
 

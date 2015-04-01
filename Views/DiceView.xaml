@@ -31,7 +31,7 @@
         <ListBox ItemsSource="{Binding Rules}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBox Text="{Binding}"/>
+                    <Label Content="{Binding}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
