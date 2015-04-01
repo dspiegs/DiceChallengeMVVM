@@ -1,0 +1,43 @@
+﻿<Window x:Class="DiceChallengeMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:DiceChallengeMVVM.ViewModels"
+        Title="Dice Challenge" Height="350" Width="525">
+    <Window.DataContext>
+        <viewModels:DiceViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <ListBox ItemsSource="{Binding RolledDice}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <ContentControl Content="{Binding Path=Image}" 
+                                             Width="100" Height="100" />
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Line Height="10"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Bet Amount: "/> 
+            <TextBox Text="{Binding BetAmount}"/>
+        </StackPanel>
+        <Line Height="10"/> 
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Current Bank: " Foreground="Red"/>
+            <TextBox Text="{Binding Bank}" Foreground="Red"/>
+        </StackPanel>
+        <Line Height="10"/>
+        <ListBox ItemsSource="{Binding Rules}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBox Text="{Binding}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Roll Dice" Command="{Binding RollDiceCommand}"/>
+            <Button Content="New Game" Command="{Binding NewGameCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
