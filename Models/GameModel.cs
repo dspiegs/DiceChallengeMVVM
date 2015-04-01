@@ -69,7 +69,24 @@ namespace DiceChallengeMVVM.Models
                 new RuleModel
                 {
                     Multiplier = 5,
-                    RuleFunc = models => models.GroupBy(x => x.Value).All(x => x.Count() == 1),
+                    RuleFunc = models =>
+                    {
+                        var runLength = 0;
+                        var values = models.Select(x => x.Value).Distinct().OrderBy(x => x).ToList();
+                        foreach (var value in values)
+                        {
+                            if (values.Any(x => x == value + 1))
+                            {
+                                runLength ++;
+                            }
+                            
+                            if (runLength == 4)
+                            {
+                                return true;
+                            }
+                        }
+                        return false;
+                    },
                     Description = "Straight"
                 }
             };

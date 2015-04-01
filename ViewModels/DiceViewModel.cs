@@ -68,6 +68,12 @@ namespace DiceChallengeMVVM.ViewModels
                 return;
             }
 
+            if (BitConverter.GetBytes(decimal.GetBits(BetAmount)[3])[2] > 2)
+            {
+                ErrorMessage = "You cannot bet with a fraction of a penny";
+                return;
+            }
+
             if (BetAmount > Bank)
             {
                 ErrorMessage = "You do not have enough money";
