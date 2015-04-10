@@ -49,3 +49,11 @@ _ReSharper.*
 bin
 obj
 
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache
+obj/Debug/DiceChallengeMVVM_MarkupCompile.i.lref
+*.cache
+*.cache
+obj/Debug/DiceChallengeMVVM.pdb
+*.resources
+obj/Debug/DiceChallengeMVVM.csproj.GenerateResource.Cache

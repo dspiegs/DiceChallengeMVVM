@@ -14,13 +14,13 @@ namespace DiceChallengeMVVM.ViewModels
 {
     public class DiceViewModel : INotifyPropertyChanged
     {
-        private GameModel gm;
+        private Game gm;
         private Random random;
         private decimal betAmount;
         private string errorMessage;
 
-        public ObservableCollection<RuleModel> Rules { get; set; } 
-        public ObservableCollection<DiceModel> RolledDice { get; private set; }
+        public ObservableCollection<IRule> Rules { get; set; } 
+        public ObservableCollection<Dice> RolledDice { get; private set; }
 
         public DelegateCommand NewGameCommand { get; private set; }
         public DelegateCommand RollDiceCommand { get; private set; }
@@ -49,10 +49,10 @@ namespace DiceChallengeMVVM.ViewModels
 
         public DiceViewModel()
         {
-            gm = new GameModel();           
+            gm = new Game();           
             random = new Random();
-            RolledDice = new ObservableCollection<DiceModel>();
-            Rules = new ObservableCollection<RuleModel>(gm.Rules);
+            RolledDice = new ObservableCollection<Dice>();
+            Rules = new ObservableCollection<IRule>(gm.Rules);
 
             RollDiceCommand = new DelegateCommand(RollDice, () => Bank > 0);
             NewGameCommand = new DelegateCommand(Reset);
@@ -80,8 +80,6 @@ namespace DiceChallengeMVVM.ViewModels
                 return;
             }
 
-            Bank -= BetAmount;
-
             RolledDice.Clear();
             for (int i = 0; i < gm.DiceToRoll; i++)
             {
@@ -90,10 +88,14 @@ namespace DiceChallengeMVVM.ViewModels
                 RolledDice.Add(gm.DiceModels[diceIndex]);                
             }
 
-            var bestRule = gm.Rules.OrderBy(x => x.Multiplier).FirstOrDefault(rule => rule.RuleFunc(RolledDice));
+            var bestRule = gm.Rules.OrderBy(x => x.Multiplier).FirstOrDefault(rule => rule.PassesRule(RolledDice));
             if (bestRule != null)
             {
                 Bank += BetAmount*bestRule.Multiplier;
+            }
+            else
+            {
+                Bank -= BetAmount;
             }
 
             if (Bank == 0)
@@ -106,7 +108,6 @@ namespace DiceChallengeMVVM.ViewModels
         public void Reset()
         {
             ErrorMessage = string.Empty;
-            RolledDice.Clear();
             BetAmount = 0;
             gm.Reset();
             OnPropertyChanged("Bank");

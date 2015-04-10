@@ -8,11 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image2.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image3.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image4.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image5.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image6.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image7.gif")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("readme.txt")]
 
 

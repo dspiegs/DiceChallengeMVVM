@@ -63,8 +63,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Models\DiceModel.cs" />
-    <Compile Include="Models\RuleModel.cs" />
+    <Compile Include="Models\CustomRule.cs" />
+    <Compile Include="Models\Dice.cs" />
+    <Compile Include="Models\Rule.cs" />
+    <Compile Include="Models\KindRule.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -72,7 +74,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DiceViewModel.cs" />
-    <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Views\DiceView.xaml.cs">
       <DependentUpon>DiceView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -97,6 +99,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
