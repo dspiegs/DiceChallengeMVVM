@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
 using DiceChallengeMVVM.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,12 +7,12 @@ namespace DiceChallengeMVVM.Test
     [TestClass]
     public class RuleTests
     {
-        private IRule straightRule;
         private List<Dice> orderedDice;
+        private Rule straightRule;
 
         [TestInitialize]
         public void Setup()
-        {            
+        {
             orderedDice = new List<Dice>
             {
                 new Dice
@@ -45,7 +42,7 @@ namespace DiceChallengeMVVM.Test
             };
 
             //i would never do this in productionCode
-            var rules = Game.GetRules();         
+            var rules = Game.GetRules();
             straightRule = rules[3];
         }
 
@@ -88,7 +85,7 @@ namespace DiceChallengeMVVM.Test
         public void Test_Straight_Start_2()
         {
             var straight = new List<Dice>
-            {                
+            {
                 orderedDice[1],
                 orderedDice[2],
                 orderedDice[3],
@@ -102,7 +99,7 @@ namespace DiceChallengeMVVM.Test
         public void Test_Straight_None()
         {
             var noStraight = new List<Dice>
-            {                
+            {
                 orderedDice[0],
                 orderedDice[2],
                 orderedDice[3],
@@ -116,7 +113,7 @@ namespace DiceChallengeMVVM.Test
         public void Test_Straight_TooShort()
         {
             var shortStraight = new List<Dice>
-            {                
+            {
                 orderedDice[1],
                 orderedDice[2],
                 orderedDice[3],
@@ -130,8 +127,8 @@ namespace DiceChallengeMVVM.Test
         public void Test_Straight_One_Die()
         {
             var straight = new List<Dice>
-            {                
-                orderedDice[1],                
+            {
+                orderedDice[1],
             };
             Assert.IsTrue(straightRule.PassesRule(straight));
         }
@@ -145,7 +142,7 @@ namespace DiceChallengeMVVM.Test
         {
             var rule = new KindRule(3);
             var dice = new List<Dice>
-            {                
+            {
                 orderedDice[1],
                 orderedDice[1]
             };
@@ -157,7 +154,7 @@ namespace DiceChallengeMVVM.Test
         {
             var rule = new KindRule(4);
             var dice = new List<Dice>
-            {                
+            {
                 orderedDice[2],
                 orderedDice[2],
                 orderedDice[2],
@@ -171,7 +168,7 @@ namespace DiceChallengeMVVM.Test
         {
             var rule = new KindRule(5);
             var dice = new List<Dice>
-            {                
+            {
                 orderedDice[3],
                 orderedDice[3],
                 orderedDice[3],
@@ -180,7 +177,7 @@ namespace DiceChallengeMVVM.Test
             };
             Assert.IsFalse(rule.PassesRule(dice));
         }
-      
+
         #endregion
     }
 }

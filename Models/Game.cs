@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Media.Imaging;
-using DiceChallengeMVVM.Properties;
 
 namespace DiceChallengeMVVM.Models
 {
@@ -52,20 +49,25 @@ namespace DiceChallengeMVVM.Models
             DiceToRoll = 5;
         }
 
-        public static List<IRule> GetRules()
+        public List<Dice> DiceModels { get; private set; }
+        public List<Rule> Rules { get; private set; }
+        public decimal Bank { get; set; }
+        public int DiceToRoll { get; private set; }
+
+        public static List<Rule> GetRules()
         {
-            return new List<IRule>
+            return new List<Rule>
             {
-                new KindRule(5){Multiplier = 100},
-                new KindRule(4){Multiplier = 50},
-                new KindRule(3){Multiplier = 10},
+                new KindRule(5) {Multiplier = 100},
+                new KindRule(4) {Multiplier = 50},
+                new KindRule(3) {Multiplier = 10},
                 new CustomRule
                 {
                     Multiplier = 5,
                     RuleFunc = models =>
                     {
                         var diceModels = models as IList<Dice> ?? models.ToList();
-                                              
+
                         //a straight must be as long as the number of dice
                         var reqLength = diceModels.Count();
 
@@ -88,7 +90,7 @@ namespace DiceChallengeMVVM.Models
                         var runLength = 1; // there is always a run of at least 1                        
                         for (int i = 0; i < values.Count - 1; i++)
                         {
-                            if(values[i + 1] == values[i] + 1)
+                            if (values[i + 1] == values[i] + 1)
                             {
                                 runLength ++;
                             }
@@ -104,11 +106,6 @@ namespace DiceChallengeMVVM.Models
                 }
             };
         }
-
-        public List<Dice> DiceModels { get; private set; }
-        public List<IRule> Rules { get; private set; }
-        public decimal Bank { get; set; }
-        public int DiceToRoll { get; private set; }
 
         public void Reset()
         {

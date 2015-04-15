@@ -1,7 +1,6 @@
 c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\bin\Debug\DiceChallengeMVVM.exe.config
 c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\bin\Debug\DiceChallengeMVVM.exe
 c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\bin\Debug\DiceChallengeMVVM.pdb
-c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\obj\Debug\DiceChallengeMVVM.csprojResolveAssemblyReference.cache
 c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\obj\Debug\Views\DiceView.g.cs
 c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\obj\Debug\App.g.cs
 c:\users\spiegs\documents\visual studio 2012\Projects\DiceChallengeMVVM\DiceChallengeMVVM\obj\Debug\GeneratedInternalTypeHelper.g.cs

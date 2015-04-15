@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiceChallengeMVVM.Models
 {
-    public interface IRule
+    public abstract class Rule
     {
-        int Multiplier { get; }
-        bool PassesRule(IEnumerable<Dice> dice);
-        string Description { get; }
-    }
-
-    public abstract class Rule : IRule
-    {
-        public int Multiplier { get; internal set; }        
+        public int Multiplier { get; internal set; }
         public virtual string Description { get; internal set; }
 
         public bool PassesRule(IEnumerable<Dice> dice)

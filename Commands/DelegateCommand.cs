@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using DiceChallengeMVVM.Annotations;
 
 namespace DiceChallengeMVVM.Commands
@@ -25,7 +20,7 @@ namespace DiceChallengeMVVM.Commands
 
             if (canExecuteFunc == null)
             {
-                throw new ArgumentNullException("canExecuteFunc");                
+                throw new ArgumentNullException("canExecuteFunc");
             }
 
             this.action = action;
@@ -36,29 +31,17 @@ namespace DiceChallengeMVVM.Commands
         {
             if (action == null)
             {
-                throw new ArgumentNullException("action");                
+                throw new ArgumentNullException("action");
             }
 
             this.action = action;
-            this.canExecuteFunc = () => true;
+            canExecuteFunc = () => true;
             canExecuteSet = true;
         }
 
         public void Execute(object parameter)
         {
             action();
-        }
-
-        public void RefeshCanExecute()
-        {
-            var canExNew = canExecuteFunc();
-            if (canExNew == canExecute)
-            {
-                return;                
-            }
-
-            canExecute = canExNew;
-            OnCanExecuteChanged();
         }
 
         public bool CanExecute(object parameter)
@@ -73,6 +56,18 @@ namespace DiceChallengeMVVM.Commands
         }
 
         public event EventHandler CanExecuteChanged;
+
+        public void RefeshCanExecute()
+        {
+            var canExNew = canExecuteFunc();
+            if (canExNew == canExecute)
+            {
+                return;
+            }
+
+            canExecute = canExNew;
+            OnCanExecuteChanged();
+        }
 
         protected virtual void OnCanExecuteChanged()
         {

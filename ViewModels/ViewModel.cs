@@ -3,23 +3,32 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Windows.Documents;
-using System.Windows.Input;
 using DiceChallengeMVVM.Annotations;
 using DiceChallengeMVVM.Commands;
 using DiceChallengeMVVM.Models;
 
 namespace DiceChallengeMVVM.ViewModels
 {
-    public class DiceViewModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
-        private Game gm;
-        private Random random;
+        private readonly Game gm;
+        private readonly Random random;
+
         private decimal betAmount;
         private string errorMessage;
 
-        public ObservableCollection<IRule> Rules { get; set; } 
+        public ViewModel()
+        {
+            gm = new Game();
+            random = new Random();
+            RolledDice = new ObservableCollection<Dice>();
+            Rules = new ObservableCollection<Rule>(gm.Rules);
+
+            RollDiceCommand = new DelegateCommand(RollDice, () => Bank > 0);
+            NewGameCommand = new DelegateCommand(Reset);
+        }
+
+        public ObservableCollection<Rule> Rules { get; set; }
         public ObservableCollection<Dice> RolledDice { get; private set; }
 
         public DelegateCommand NewGameCommand { get; private set; }
@@ -47,16 +56,18 @@ namespace DiceChallengeMVVM.ViewModels
             }
         }
 
-        public DiceViewModel()
-        {
-            gm = new Game();           
-            random = new Random();
-            RolledDice = new ObservableCollection<Dice>();
-            Rules = new ObservableCollection<IRule>(gm.Rules);
 
-            RollDiceCommand = new DelegateCommand(RollDice, () => Bank > 0);
-            NewGameCommand = new DelegateCommand(Reset);
+        public decimal Bank
+        {
+            get { return gm.Bank; }
+            set
+            {
+                gm.Bank = value;
+                OnPropertyChanged();
+            }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void RollDice()
         {
@@ -83,9 +94,8 @@ namespace DiceChallengeMVVM.ViewModels
             RolledDice.Clear();
             for (int i = 0; i < gm.DiceToRoll; i++)
             {
-                Thread.Sleep(100);
                 var diceIndex = random.Next(0, gm.DiceModels.Count - 1);
-                RolledDice.Add(gm.DiceModels[diceIndex]);                
+                RolledDice.Add(gm.DiceModels[diceIndex]);
             }
 
             var bestRule = gm.Rules.OrderBy(x => x.Multiplier).FirstOrDefault(rule => rule.PassesRule(RolledDice));
@@ -100,7 +110,7 @@ namespace DiceChallengeMVVM.ViewModels
 
             if (Bank == 0)
             {
-                ErrorMessage = "Game Over";                
+                ErrorMessage = "Game Over";
                 RollDiceCommand.RefeshCanExecute();
             }
         }
@@ -113,19 +123,6 @@ namespace DiceChallengeMVVM.ViewModels
             OnPropertyChanged("Bank");
             RollDiceCommand.RefeshCanExecute();
         }
-
-
-        public decimal Bank
-        {
-            get { return gm.Bank; }
-            set
-            {
-                gm.Bank = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

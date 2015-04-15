@@ -57,3 +57,10 @@ obj/Debug/DiceChallengeMVVM_MarkupCompile.i.lref
 obj/Debug/DiceChallengeMVVM.pdb
 *.resources
 obj/Debug/DiceChallengeMVVM.csproj.GenerateResource.Cache
+bin/Debug/DiceChallengeMVVM.vshost.exe
+bin/Debug/DiceChallengeMVVM.vshost.exe
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/DiceChallengeMVVM_MarkupCompile.cache
+*.cache
+obj/Debug/GeneratedInternalTypeHelper.g.cs

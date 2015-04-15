@@ -5,18 +5,20 @@ namespace DiceChallengeMVVM.Models
 {
     public class KindRule : Rule
     {
-        public int KindCount { get; internal set; }
-
-        public KindRule() { }
+        public KindRule()
+        {
+        }
 
         public KindRule(int kindCount)
         {
             KindCount = kindCount;
         }
 
+        public int KindCount { get; internal set; }
+
         public override string Description
         {
-            get { return string.Format("{0} of a kind", KindCount); }            
+            get { return string.Format("{0} of a kind", KindCount); }
         }
 
         protected override bool RunRule(IEnumerable<Dice> dice)

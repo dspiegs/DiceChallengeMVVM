@@ -4,7 +4,7 @@
         xmlns:viewModels="clr-namespace:DiceChallengeMVVM.ViewModels"
         Title="Dice Challenge" Height="400" Width="475">
     <Window.DataContext>
-        <viewModels:DiceViewModel/>
+        <viewModels:ViewModel/>
     </Window.DataContext>
     <StackPanel>
         <ListBox ItemsSource="{Binding RolledDice}" IsEnabled="False"
@@ -43,7 +43,7 @@
         <Line Height="10"/>
         <StackPanel Orientation="Horizontal">
             <Button Content="Roll Dice" Command="{Binding RollDiceCommand}"/>
-            <Line Width="20"></Line>
+            <Line Width="20" />
             <Button Content="New Game" Command="{Binding NewGameCommand}"/>
         </StackPanel>
         <Line Height="10"/>
